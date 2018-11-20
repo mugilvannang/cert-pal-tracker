@@ -55,6 +55,9 @@ jobs:
         - cf login -a $CF_API_URL -u $CF_USERNAME -p $CF_PASSWORD -o $CF_ORG -s $CF_SPACE
         - scripts/migrate-databases.sh pal-tracker .
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> d921f90... Add task for migrating databases
+=======
 >>>>>>> d921f90... Add task for migrating databases
 =======
 >>>>>>> d921f90... Add task for migrating databases
