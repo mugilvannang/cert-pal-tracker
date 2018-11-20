@@ -47,20 +47,10 @@ jobs:
         - echo "Downloading $RELEASE_TAG"
         - wget -P build/libs https://github.com/$GITHUB_USERNAME/cert-pal-tracker/releases/download/$RELEASE_TAG/pal-tracker-mugil.jar
       before_deploy:
-<<<<<<< HEAD
-        - echo "Deploying $RELEASE_TAG to Cloud Foundry "
-=======
         - echo "Deploying $RELEASE_TAG to Cloud Foundry"
       before_script:
         - cf login -a $CF_API_URL -u $CF_USERNAME -p $CF_PASSWORD -o $CF_ORG -s $CF_SPACE
         - scripts/migrate-databases.sh pal-tracker .
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> d921f90... Add task for migrating databases
-=======
->>>>>>> d921f90... Add task for migrating databases
-=======
->>>>>>> d921f90... Add task for migrating databases
       deploy:
         provider: cloudfoundry
         api: $CF_API_URL
