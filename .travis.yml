@@ -28,7 +28,7 @@ jobs:
         file: "build/libs/pal-tracker-mugil.jar"
         skip_cleanup: true
         on:
-          branch: deploymentpipelines
+          branch: springmvcwithrest
           #branch: master
     - stage: deploy to cf
       language: bash
