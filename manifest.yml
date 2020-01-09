@@ -8,5 +8,4 @@ applications:
     instances: 1
     env:
       WELCOME_MESSAGE: Hello
-      JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 11.+ } }'
       JAVA_OPTS: '-Xmx250m -Xss100m'
