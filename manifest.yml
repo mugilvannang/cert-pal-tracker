@@ -4,7 +4,6 @@ applications:
     path: build/libs/pal-tracker-mugil.jar
     routes:
       - route:pal-tracker-mugil-timely-genet.cfapps.io/
-      - route:pal-tracker-mugil-timely-genet.cfapps.io/blue
     memory: 500M
     instances: 1
     env:
