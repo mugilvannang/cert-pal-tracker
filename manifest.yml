@@ -1,8 +1,13 @@
 ---
 applications:
-  - name: pal-tracker-mugil
+  -
+    env:
+      JAVA_OPTS: "-Xmx250m -Xss100m"
+      JBP_CONFIG_OPEN_JDK_JRE: "{ jre: { version: 11.+ } }"
+      WELCOME_MESSAGE: Hello
+    instances: 1
+    memory: 500M
+    name: pal-tracker-mugil
     path: build/libs/pal-tracker-mugil.jar
     routes:
-      - route:pal-tracker-mugil-timely-genet.cfapps.io/
-    memory: 500M
-    instances: 1
+      - "route:pal-tracker-mugil-timely-genet.cfapps.io/"
