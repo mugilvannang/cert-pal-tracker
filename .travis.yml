@@ -27,6 +27,8 @@ jobs:
         api_key: $GITHUB_OAUTH_TOKEN
         file: "build/libs/pal-tracker-mugil.jar"
         skip_cleanup: true
+        on:
+          branch: deploymentpipelines
     - stage: deploy to cf
       language: bash
       script:

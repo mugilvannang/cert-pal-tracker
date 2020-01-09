@@ -7,6 +7,3 @@ applications:
     routes:
       - route: pal-tracker-mugil-timely-genet.cfapps.io
       - route: pal-tracker-mugil-green-timely-genet.cfapps.io
-    branches:
-      only:
-        - deploymentpipelines
