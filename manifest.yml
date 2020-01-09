@@ -5,4 +5,5 @@ applications:
     instances: 1
     path: build/libs/pal-tracker-mugil.jar
     routes:
-      - route:pal-tracker-mugil-timely-genet.cfapps.io/
+      - route: pal-tracker-mugil-timely-genet.cfapps.io
+      - route: pal-tracker-mugil-timely-genet.cfapps.io/blue
