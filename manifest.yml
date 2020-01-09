@@ -1,7 +1,7 @@
 ---
 applications:
   - name: pal-tracker-mugil
-    memory: 500M
+    memory: 1024M
     instances: 1
     path: build/libs/pal-tracker-mugil.jar
     routes:
