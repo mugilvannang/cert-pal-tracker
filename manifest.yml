@@ -2,7 +2,8 @@
 applications:
   - name: pal-tracker-mugil
     path: build/libs/pal-tracker-mugil.jar
-    random-route: true
+    routes:
+      - route:pal-tracker-mugil-timely-genet.cfapps.io
     env:
-      WELCOME_MESSAGE: Hello from Cloud Foundry
+      WELCOME_MESSAGE: Hello
       JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 11.+ } }'
