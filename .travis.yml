@@ -15,7 +15,6 @@ jobs:
       install: skip
       script: ./gradlew clean build
       before_install:
-        - pwd
         - ls -la
         - chmod +x ./gradlew
       before_deploy:
