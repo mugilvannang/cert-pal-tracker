@@ -1,39 +1,57 @@
 package io.pivotal.pal.tracker;
 
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class InMemoryTimeEntryRepository  implements TimeEntryRepository{
 
-    public TimeEntry create(TimeEntry pTimeEntry){
-        TimeEntry objTimeEntry = null;
-        return objTimeEntry;
-    }
+    private HashMap<Long, TimeEntry> hmTimeEntries = new HashMap<>();
+    Long currentId = 1L;
 
-    public ResponseEntity<TimeEntry> read(Long pTimeEntryId){
-        ResponseEntity objResponseEntity = null;
-        return objResponseEntity;
+
+    public TimeEntry create(TimeEntry pTimeEntry){
+        Long id = currentId;
+        TimeEntry newTimeEntry = new TimeEntry(
+                id,
+                pTimeEntry.getProjectId(),
+                pTimeEntry.getUserId(),
+                pTimeEntry.getDate(),
+                pTimeEntry.getHours()
+        );
+
+        hmTimeEntries.put(id, newTimeEntry);
+        currentId += currentId;
+        return newTimeEntry;
     }
 
     public TimeEntry find(Long pTimeEntryId){
-        TimeEntry objTimeEntry = null;
-        return objTimeEntry;
+        return hmTimeEntries.get(pTimeEntryId);
     }
 
-    public ResponseEntity<List<TimeEntry>> list(){
-        ResponseEntity objResponseEntity = null;
-        return objResponseEntity;
+    public List<TimeEntry> list(){
+        return new ArrayList<>(hmTimeEntries.values());
     }
 
 
     public TimeEntry update(Long pTimeEntryId, TimeEntry pTimeEntry){
-        TimeEntry objTimeEntry = null;
-        return objTimeEntry;
+        TimeEntry updatedEntry  = new TimeEntry(
+                pTimeEntryId,
+                pTimeEntry.getProjectId(),
+                pTimeEntry.getUserId(),
+                pTimeEntry.getDate(),
+                pTimeEntry.getHours()
+        );
+
+        hmTimeEntries.replace(pTimeEntryId, updatedEntry);
+        return updatedEntry;
     }
 
-    public TimeEntry delete(Long pTimeEntryId){
-        TimeEntry objTimeEntry = null;
-        return objTimeEntry;
+    public void delete(Long pTimeEntryId){
+        hmTimeEntries.remove(pTimeEntryId);
     }
 }
