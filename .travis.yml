@@ -32,7 +32,7 @@ jobs:
         file: "build/libs/pal-tracker-mugil.jar"
         skip_cleanup: true
         on:
-          branch: springmvcwithrest
+          branch: cfservicesandmigration
           #branch: master
     - stage: deploy to cf
       language: java
