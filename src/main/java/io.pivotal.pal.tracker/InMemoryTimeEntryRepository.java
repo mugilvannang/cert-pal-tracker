@@ -13,9 +13,8 @@ public class InMemoryTimeEntryRepository  implements TimeEntryRepository{
     private HashMap<Long, TimeEntry> hmTimeEntries = new HashMap<>();
     Long currentId = 1L;
 
-
     public TimeEntry create(TimeEntry pTimeEntry){
-        Long id = currentId;
+        Long id = currentId++;
         TimeEntry newTimeEntry = new TimeEntry(
                 id,
                 pTimeEntry.getProjectId(),
@@ -25,7 +24,7 @@ public class InMemoryTimeEntryRepository  implements TimeEntryRepository{
         );
 
         hmTimeEntries.put(id, newTimeEntry);
-        currentId += currentId;
+        //currentId += currentId;
         return newTimeEntry;
     }
 
@@ -39,7 +38,10 @@ public class InMemoryTimeEntryRepository  implements TimeEntryRepository{
 
 
     public TimeEntry update(Long pTimeEntryId, TimeEntry pTimeEntry){
-        TimeEntry updatedEntry  = new TimeEntry(
+
+        if (find(pTimeEntryId) == null) return null;
+
+        TimeEntry updatedEntry = new TimeEntry(
                 pTimeEntryId,
                 pTimeEntry.getProjectId(),
                 pTimeEntry.getUserId(),

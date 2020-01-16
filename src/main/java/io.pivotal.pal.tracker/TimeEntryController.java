@@ -11,7 +11,6 @@ import java.util.List;
 public class TimeEntryController {
     private TimeEntryRepository timeEntryRepository;
 
-
     public TimeEntryController(TimeEntryRepository timeEntryRepository) {
         this.timeEntryRepository = timeEntryRepository;
     }
@@ -28,24 +27,27 @@ public class TimeEntryController {
         ResponseEntity objResponseEntity = null;
 
         if(objTimeEntry != null)
-         objResponseEntity = new ResponseEntity<>(objTimeEntry, HttpStatus.FOUND);
+         objResponseEntity = new ResponseEntity<>(objTimeEntry, HttpStatus.OK);
         else
          objResponseEntity = new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
         return objResponseEntity;
     }
 
-        @GetMapping
-    public ResponseEntity<List<TimeEntry>> list(){
-        List<TimeEntry> arrTimeEntry = timeEntryRepository.list();
-        ResponseEntity objResponseEntity = new ResponseEntity<>(arrTimeEntry, HttpStatus.OK);
-        return objResponseEntity;
+    @GetMapping
+    public ResponseEntity<List<TimeEntry>> list() {
+        return new ResponseEntity<>(timeEntryRepository.list(), HttpStatus.OK);
     }
 
     @PutMapping("{pTimeEntryId}")
     public ResponseEntity update(@PathVariable  Long pTimeEntryId, @RequestBody  TimeEntry pTimeEntry){
-        ResponseEntity objResponseEntity = null;
-        return objResponseEntity;
+        TimeEntry updatedTimeEntry = timeEntryRepository.update(pTimeEntryId, pTimeEntry);
+
+        if (updatedTimeEntry != null) {
+            return new ResponseEntity<>(updatedTimeEntry, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @DeleteMapping("{pTimeEntryId}")
