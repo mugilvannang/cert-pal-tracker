@@ -68,5 +68,5 @@ task testMigrate(type: FlywayMigrateTask) {
 }
 
 bootRun.environment([
-    "WELCOME_MESSAGE": "hello",
+    "WELCOME_MESSAGE": "hello"
 ])
