@@ -1,5 +1,8 @@
 package io.pivotal.pal.tracker;
 
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.DistributionSummary;
+import io.micrometer.core.instrument.MeterRegistry;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,14 +14,24 @@ import java.util.List;
 @RequestMapping("/time-entries")
 public class TimeEntryController {
     private TimeEntryRepository timeEntryRepository;
+    private final DistributionSummary timeEntrySummary;
+    private final Counter actionCounter;
 
-    public TimeEntryController(@Qualifier("DB") TimeEntryRepository timeEntryRepository) {
-        this.timeEntryRepository = timeEntryRepository;
-    }
+
+	public TimeEntryController(@Qualifier("DB") TimeEntryRepository timeEntryRepository, MeterRegistry meterRegistry) {
+		this.timeEntryRepository = timeEntryRepository;
+        timeEntrySummary = meterRegistry.summary("timeEntry.summary");
+        actionCounter = meterRegistry.counter("timeEntry.actionCounter");
+		
+	}
 
     @PostMapping
     public ResponseEntity create(@RequestBody TimeEntry timeEntry){
         TimeEntry createdTimeEntry = timeEntryRepository.create(timeEntry);
+
+        actionCounter.increment();
+        timeEntrySummary.record(timeEntryRepository.list().size());
+
         return new ResponseEntity<>(createdTimeEntry, HttpStatus.CREATED);
     }
 
@@ -28,7 +41,10 @@ public class TimeEntryController {
         ResponseEntity objResponseEntity = null;
 
         if(objTimeEntry != null)
+        {
          objResponseEntity = new ResponseEntity<>(objTimeEntry, HttpStatus.OK);
+         actionCounter.increment();
+        }
         else
          objResponseEntity = new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
@@ -37,6 +53,7 @@ public class TimeEntryController {
 
     @GetMapping
     public ResponseEntity<List<TimeEntry>> list() {
+        actionCounter.increment();
         return new ResponseEntity<>(timeEntryRepository.list(), HttpStatus.OK);
     }
 
