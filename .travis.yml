@@ -32,8 +32,8 @@ jobs:
         api_key: $GITHUB_OAUTH_TOKEN
         file: "build/libs/pal-tracker-mugil.jar"
         skip_cleanup: true
-        on:
-          branch: cfservicesandmigration
+        on:          
+					all_branches: true
           #branch: master
     - stage: deploy to cf
       language: java
