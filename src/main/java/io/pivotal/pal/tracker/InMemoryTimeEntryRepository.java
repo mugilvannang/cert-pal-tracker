@@ -2,12 +2,14 @@ package io.pivotal.pal.tracker;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Component(value="InMemory")
 public class InMemoryTimeEntryRepository  implements TimeEntryRepository{
 
     private HashMap<Long, TimeEntry> hmTimeEntries = new HashMap<>();
