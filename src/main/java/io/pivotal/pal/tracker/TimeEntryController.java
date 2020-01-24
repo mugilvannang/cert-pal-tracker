@@ -12,7 +12,7 @@ import java.util.List;
 public class TimeEntryController {
     private TimeEntryRepository timeEntryRepository;
 
-    public TimeEntryController(@Qualifier("InMemory") TimeEntryRepository timeEntryRepository) {
+    public TimeEntryController(@Qualifier("DB") TimeEntryRepository timeEntryRepository) {
         this.timeEntryRepository = timeEntryRepository;
     }
 
