@@ -32,8 +32,13 @@ jobs:
         api_key: $GITHUB_OAUTH_TOKEN
         file: "build/libs/pal-tracker-mugil.jar"
         skip_cleanup: true
+<<<<<<< HEAD
         on:          
 					all_branches: true
+=======
+        on:
+          branch: springjdbctemplate
+>>>>>>> d0832e33c17f051f5fddd4e8fb86cff4f6fc2cc7
           #branch: master
     - stage: deploy to cf
       language: java
