@@ -33,7 +33,7 @@ jobs:
         file: "build/libs/pal-tracker-mugil.jar"
         skip_cleanup: true
         on:
-          branch: cfservicesandmigration
+          branch: springjdbctemplate
           #branch: master
     - stage: deploy to cf
       language: java
