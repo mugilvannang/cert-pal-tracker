@@ -9,7 +9,6 @@ public class WelcomeController {
     private String message;
 
     public WelcomeController(@Value("${welcome.message}") String pmessage)
-    //public WelcomeController(@Value("hello") String pmessage)  
     {
         this.message=pmessage;
     }
