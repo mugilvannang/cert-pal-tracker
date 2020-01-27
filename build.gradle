@@ -29,12 +29,7 @@ java {
 
 apply plugin: 'org.flywaydb.flyway'
 apply plugin: 'org.springframework.boot'
-<<<<<<< HEAD
-apply plugin: "eclipse"
-=======
 apply plugin: 'eclipse'
->>>>>>> 51136f6ca2a759f688428c34b488cd5266555ba0
-
 
 repositories {
     mavenCentral()
